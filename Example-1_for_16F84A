@@ -26,23 +26,23 @@ RESULT_H EQU 0X10
 ;---------Initializations---------
 
 CLRF RESULT_L         ; Clear RESULT_L, i.e., RESULT_L=0 
-CLRF RESULT_H        ; Clear RESULT_H, i.e., RESULT_H=0
+CLRF RESULT_H         ; Clear RESULT_H, i.e., RESULT_H=0
 MOVLW 0X2B            ; W = 0X2B = 43
-MOVWF VALUE1        ; VALUE1 = 43
+MOVWF VALUE1          ; VALUE1 = 43
 MOVLW 0X2B            ; W = 0X2B = 43
-MOVWF VALUE2        ; VALUE2 = 43
+MOVWF VALUE2          ; VALUE2 = 43
 MOVLW 0X2B            ; W = 0X2B = 43
-MOVWF VALUE3        ; VALUE3 = 43
+MOVWF VALUE3          ; VALUE3 = 43
 
 
 ;---------START PROGRAM---------
 
 MOVF VALUE1,0        ; VALUE1 is loaded into register W, because d = 0
-ADDWF VALUE2,0      ; Content of register W are added to VALUE2 and stored in W, because d = 0
-ADDWF VALUE3,0      ; Content of register W are added to VALUE3 and stored in W, because d = 0
-BTFSC STATUS,0        ; Skip next line if carry bit is clear because the summation of the values is < 256
+ADDWF VALUE2,0       ; Content of register W are added to VALUE2 and stored in W, because d = 0
+ADDWF VALUE3,0       ; Content of register W are added to VALUE3 and stored in W, because d = 0
+BTFSC STATUS,0       ; Skip next line if carry bit is clear because the summation of the values is < 256
 INCF RESULT_H,1      ; if summation of the values >= 256, then RESULT_H = 1
-MOVWF RESULT_L     ; W is loaded into RESULT_L 
+MOVWF RESULT_L       ; W is loaded into RESULT_L 
 
-FINAL_LOOP             ; Program stays in the loop forever after the summation has been calculated
+FINAL_LOOP           ; Program stays in the loop forever after the summation has been calculated
 GOTO FINAL_LOOP
